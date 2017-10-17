@@ -1,0 +1,8 @@
+<h1>メッセージ一覧</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li><%= task.content %></li> : <%= task.content %></li>
+  <% end %>
+</ul>
+<%= link_to '新規メッセージの投稿', new_task_path %>
