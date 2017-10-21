@@ -1,9 +1,20 @@
 <h1>id = <%= @tasks.id %> のメッセージ詳細ページ</h1>
 
 
-<p>ステータス: <%= @tasks.status %></p>
-<p>タスク：<%= @tasks.content %></p>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @tasks.id %></td>
+  </tr>
+  <tr>
+    <th>ステータス</th>
+    <td><%= @tasks.status %></td>
+  </tr>
+  <tr>
+    <th>タスク</th>
+    <td><%= @tasks.content %></td>
+  </tr>
+</table>
 
-<%= link_to '一覧に戻る', tasks_path %>
 <%= link_to 'このメッセージを編集する', edit_task_path(@tasks) %>
 <%= link_to 'このメッセージを削除する', @tasks, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
