@@ -16,14 +16,14 @@ class TasksController < ApplicationController
 
   def create
     #@tasks = Task.new(task_params)
-    @tasks = current_user.tasks.build(task_params)
+    @task = current_user.tasks.build(task_params)
 
-    if @tasks.save
+    if @task.save
       flash[:success] = 'Task が正常に投稿されました'
       #redirect_to @tasks
       redirect_to root_url
     else
-      @tasks = current_user.tasks.order('created_at DESC').page(params[:page])
+      @task = current_user.tasks.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'Task が投稿されませんでした'
       #render :new
       #render :'toppages/index'
@@ -35,10 +35,11 @@ class TasksController < ApplicationController
   end
 
   def update
+    @task = current_user.tasks.build(task_params)
 
-    if @tasks.update(task_params)
+    if @task.update(task_params)
       flash[:success] = 'Task は正常に更新されました'
-      redirect_to @tasks
+      redirect_to @task
     else
       flash.now[:danger] = 'Task は更新されませんでした'
       render :edit
